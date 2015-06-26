@@ -12,5 +12,4 @@ void draw(){
 }
 
 void keyPressed(){
-  j1.keyPressed();
 }
