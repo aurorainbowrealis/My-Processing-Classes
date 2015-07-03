@@ -3,7 +3,7 @@ public class Projectile{
   float maxSpeed;
   PVector target;
   PVector velocity;
-  float diameter, ray;
+  float ray, diameter;
   
   Projectile(PVector startPos, PVector target){
     this.position = new PVector(startPos.x, startPos.y);//O NOSSO PROBLEMA ESTÁ AQUI
@@ -12,7 +12,7 @@ public class Projectile{
     velocity = new PVector(target.x - startPos.x, target.y - startPos.y);
     velocity.limit(maxSpeed);
     ray = 3.5;
-    diameter = 2*ray;
+    diameter = 2 * ray;
   }
   
   void draw(){
