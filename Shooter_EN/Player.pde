@@ -3,6 +3,8 @@ public class Player {
   float ray, diameter, vMovement;
   ArrayList<Projectile> shots;
   boolean _left, _right, _down, _up, _shot;
+  int aMunition;
+  float lastShot, shotInterval;
 
   public Player(float x, float y, float ray) {
     position = new PVector(x, y);
@@ -11,6 +13,8 @@ public class Player {
     vMovement = 10;
     shots = new ArrayList<Projectile>();
     _left = _right = _down = _up = _shot = false;
+    aMunition = 5;
+    shotInterval = 300;
   }
 
   void DrawTarget(){
@@ -37,7 +41,11 @@ public class Player {
     if(_down) position.y += vMovement;
     if(_left) position.x -= vMovement;
     if(_right) position.x += vMovement;
-    if(_shot) shots.add(new Projectile(position,new PVector(mouseX, mouseY)));
+    if(_shot && aMunition > 0 && millis() >= lastShot + shotInterval) {
+      shots.add(new Projectile(position,new PVector(mouseX, mouseY)));
+      aMunition--;
+      lastShot = millis();
+    }
     
     noStroke();
     fill(0, 255, 0);
