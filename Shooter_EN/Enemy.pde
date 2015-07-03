@@ -1,17 +1,19 @@
 class Enemy{
   PVector position;
-  float diameter, ray;
-  int health;
-  
-  Enemy(float x, float y){
+  float ray, diameter, health;
+  Enemy(float x, float y, float ray){
     position = new PVector(x,y);
-    ray = 100;
-    diameter = 2*ray;
+    this.ray = ray;
+    this.diameter = 2 * ray; 
     health = 100;
   }
   
+  boolean isAlive(){
+    return health > 0;
+  }
+  
   void draw(){
-    if(health <= 0) return;
+    if(!isAlive()) return;
     fill(255);
     ellipse(position.x, position.y, diameter, diameter);
   }
